@@ -5,7 +5,7 @@ from django.forms import ModelForm
 
 class Desenvolvedor(Base):
     nome = models.CharField('Nome', max_length=120)
-    email = models.EmailField('E-mail')
+    email = models.EmailField('E-mail', unique=True)
     linguagem = models.ManyToManyField(Linguagem)
     framework = models.ManyToManyField(FrameWork)
 
@@ -13,9 +13,5 @@ class Desenvolvedor(Base):
         verbose_name = 'Desenvolvedor'
         verbose_name_plural = 'Desenvolvedores'
 
-
-class DevForm(ModelForm):
-
-    class Meta:
-        model = Desenvolvedor
-        fields = ['nome', 'email', 'linguagem', 'framework']
+    def __str__(self):
+        return self.nome

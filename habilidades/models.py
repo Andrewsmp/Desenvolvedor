@@ -1,4 +1,6 @@
 from django.db import models
+from django.forms import ModelForm
+
 
 class Base(models.Model):
     data_criacao = models.DateTimeField('Data de criação', auto_now_add=True)
@@ -19,6 +21,14 @@ class Linguagem(Base):
     def __str__(self):
         return self.nome
 
+
+class LinguagemForm(ModelForm):
+
+    class Meta:
+        model = Linguagem
+        fields = ['nome', 'ativo']
+
+
 class FrameWork(Base):
     nome = models.CharField('Nome', max_length=100)
 
@@ -28,3 +38,10 @@ class FrameWork(Base):
 
     def __str__(self):
         return self.nome
+
+
+class Frameworkorm(ModelForm):
+
+    class Meta:
+        model = FrameWork
+        fields = ['nome', 'ativo']        
