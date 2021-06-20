@@ -1,18 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de habilidade</title>
-</head>
-<body>
-    <label><strong>Habilidades: </strong></label>
-    {% for l in object_list %}
+{% extends 'paginas/base.html' %}
+{% block conteudo %}
+    <label><strong>Linguagens: </strong></label>
+    {% for l in linguagens %}
         {% if l.ativo %}
         <br>
             {{ l.nome }}
         {% endif %}
     {% endfor %}
-</body>
-</html>
+    <br>
+    <br>
+    <label><strong>Frameworks: </strong></label>
+    {% for f in frameworks %}
+        {% if f.ativo %}
+        <br>
+            {{ f.nome }}
+        {% endif %}
+    {% endfor %}
+{% endblock %}

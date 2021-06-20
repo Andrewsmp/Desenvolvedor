@@ -1,0 +1,17 @@
+{% extends 'paginas/base.html' %}
+{% block conteudo %}
+    {% for user in object_list %}
+    <br>
+    <br>
+        {% if user %}
+            <label><strong>Nome: </strong></label>{{ user.username }}
+            <br>
+            <label><strong>E-mail: </strong></label>{{ user.email }}
+            <br>
+            <label><strong>Nome: </strong></label>{{ user.first_name }}
+            <br>
+            <label><strong>Sobrenome </strong></label>{{ user.last_name }}
+            <br>
+        {% endif %}
+    {% endfor %}
+{% endblock %}

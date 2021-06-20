@@ -12,7 +12,7 @@ class Base(models.Model):
 
 
 class Linguagem(Base):
-    nome = models.CharField('Nome', max_length=100)
+    nome = models.CharField('Nome', max_length=100, unique=True)
 
     class Meta:
         verbose_name = 'Linguagem'
@@ -22,26 +22,13 @@ class Linguagem(Base):
         return self.nome
 
 
-class LinguagemForm(ModelForm):
-
-    class Meta:
-        model = Linguagem
-        fields = ['nome', 'ativo']
-
 
 class FrameWork(Base):
-    nome = models.CharField('Nome', max_length=100)
+    nome = models.CharField('Nome', max_length=100, unique=True)
 
     class Meta:
         verbose_name = 'Framework'
         verbose_name_plural = 'Frameworks'
 
     def __str__(self):
-        return self.nome
-
-
-class Frameworkorm(ModelForm):
-
-    class Meta:
-        model = FrameWork
-        fields = ['nome', 'ativo']        
+        return self.nome       

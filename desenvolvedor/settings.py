@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-import os
+
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -40,7 +40,10 @@ INSTALLED_APPS = [
     #Meus apps
     'dev.apps.DevConfig',
     'habilidades.apps.HabilidadesConfig',
-    'paginas.apps.PaginasConfig'
+    'paginas.apps.PaginasConfig',
+    'usuario.apps.UsuarioConfig',
+    #Apps de terceiros
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -58,6 +61,7 @@ ROOT_URLCONF = 'desenvolvedor.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        #Seta como padrão a pasta template para arquivos html
         'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -131,3 +135,11 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#Crispy-forms
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+#Autenticação
+LOGIN_REDIRECT_URL = 'desenvolvedor:listar-dev'
+LOGIN_URL = 'usuario:login'
+LOGOUT_REDIRECT_URL = 'usuario:login'

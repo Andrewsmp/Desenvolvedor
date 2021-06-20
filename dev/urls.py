@@ -1,6 +1,8 @@
 from dev.views import ListViewDev, CreateViewDev, UpdateViewDev, DeleteviewDev
 from django.urls import path
 
+app_name = 'dev'
+
 urlpatterns = [
     path('listar/', ListViewDev.as_view(), name='listar-dev'),
     path('inserir/', CreateViewDev.as_view(), name='inserir-dev'),

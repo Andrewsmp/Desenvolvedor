@@ -1,19 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deletar</title>
-</head>
-<body>
-    <form method="POST">
-        {% csrf_token %}
-        <p><strong>
-            Deseja excluir {{ object }}?
-        </strong></p>
-        {{ form.as_p }}
-        <input type="submit" value="Enviar">
-    </form>
-</body>
-</html>
+{% extends 'paginas/base.html' %}
+
+{% block conteudo %}
+<div class="modal-fade" id="meuModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-tittle">Excluir</h5>
+            </div>
+                    
+            <div class="modal-body">
+                Deseja excluir {{ object }}?
+               
+            </div>
+
+            <div class="modal-footer">
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                <input type="submit" value="Enviar" class="btn btn-outline-danger">
+                <a href="{% url 'dev:listar-dev' %}" class="btn btn-outline-dark">Fechar</a>
+            </div>
+                </form>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
