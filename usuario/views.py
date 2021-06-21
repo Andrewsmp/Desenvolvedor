@@ -12,11 +12,11 @@ class ListViewUsuario(LoginRequiredMixin, ListView):
     queryset = User.objects.all()
 
 
-class CreateViewUsuario(LoginRequiredMixin, CreateView):
+class CreateViewUsuario(CreateView):
     queryset = User.objects.all()
     fields = ['username', 'email', 'password', 'first_name', 'last_name']
     template_name = 'paginas/inserir.html'
-    success_url = reverse_lazy('usuario:listar')
+    success_url = reverse_lazy('usuario:login')
 
 
 class UpdateViewUsuario(LoginRequiredMixin, UpdateView):

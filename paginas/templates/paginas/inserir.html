@@ -9,9 +9,9 @@
 {% block conteudo %}
     <form method="POST">
         {% csrf_token %}
-        <p><strong>
+        <h1><strong>
             Inserir ou alterar.
-        </strong></p>
+        </strong></h1>
         {{ form|crispy }}
         <input type="submit" value="Enviar" class="btn btn-outline-primary ">
     </form>
