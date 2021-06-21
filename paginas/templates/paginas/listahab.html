@@ -1,68 +1,70 @@
 {% extends 'paginas/base.html' %}
 
 {% block titulo %}
-    <title>Lista</title>
+<title>Lista</title>
 {% endblock %}
 
 {% block conteudo %}
 <h1>Habilidades</h1>
 <div class="container">
-    <div class="row">
-      <div class="col">
-        
-        <div class="bd-example">
-            <table class="table table-hover">
-                <thead>
-              <tr>
-                <th scope="col">Linguagens</th>
-                <th scope="col">Ações</th>
-              </tr>
-            </thead>
-            <tbody>
+  <div class="row">
+    <div class="col">
+
+      <div class="bd-example">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Linguagens</th>
+              <th scope="col">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
             {% for l in linguagens %}
-                {% if l.ativo %}
-              <tr>
-                <td>{{ l.nome }}</td>
-                <td>
-                    <a href="/habilidade/alterar/linguagem/{{ l.id }}" class="btn btn-warning btn-sm">Alterar</a>
-                    <a href="/habilidade/deletar/linguagem/{{ l.id }}" class="btn btn-danger btn-sm">Deletar</a>
-                </td>
-              </tr>
-                {% endif %}
+            {% if l.ativo %}
+            <tr>
+              <td>{{ l.nome }}</td>
+              <td>
+                <a href="/habilidade/alterar/linguagem/{{ l.id }}" class="btn btn-warning btn-sm">Alterar</a>
+                <a href="/habilidade/deletar/linguagem/{{ l.id }}" class="btn btn-danger btn-sm">Deletar</a>
+                <a href="/habilidade/detalhe/linguagem/{{ l.id }}" class="btn btn-info btn-sm">Detalhe</a>
+              </td>
+            </tr>
+            {% endif %}
             {% endfor %}
-            </tbody>
-            </table>
-          </div>
-
+          </tbody>
+        </table>
       </div>
-      <div class="col">
-        
-        <div class="bd-example">
-            <table class="table table-hover">
-                <thead>
-              <tr>
-                <th scope="col">Framework</th>
-                <th scope="col">Ações</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-            {% for f in frameworks %}
-                {% if f.ativo %}
-                <td>{{ f.nome }}</td>
-                <td>
-                    <a href="/habilidade/alterar/framework/{{ f.id }}" class="btn btn-warning btn-sm">Alterar</a>
-                    <a href="/habilidade/deletar/framework/{{ f.id }}" class="btn btn-danger btn-sm">Deletar</a>
-                </td>
-              </tr>
-                {% endif %}
-            {% endfor %}
-            </tbody>
-            </table>
-          </div>
 
-      </div>
-      
     </div>
+    <div class="col">
+
+      <div class="bd-example">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Framework</th>
+              <th scope="col">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              {% for f in frameworks %}
+              {% if f.ativo %}
+              <td>{{ f.nome }}</td>
+              <td>
+                <a href="/habilidade/alterar/framework/{{ f.id }}" class="btn btn-warning btn-sm">Alterar</a>
+                <a href="/habilidade/deletar/framework/{{ f.id }}" class="btn btn-danger btn-sm">Deletar</a>
+                <a href="/habilidade/detalhe/framework/{{ f.id }}" class="btn btn-info btn-sm">Detalhe</a>
+              </td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
   </div>
-  {% endblock %}
+</div>
+{% endblock %}

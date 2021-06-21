@@ -1,4 +1,5 @@
 from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -10,6 +11,12 @@ class ListViewUsuario(LoginRequiredMixin, ListView):
     login_url = reverse_lazy('usuario:login')
     template_name = 'paginas/listausuario.html'
     queryset = User.objects.all()
+
+
+class DetailViewUsuario(LoginRequiredMixin, DetailView):
+    login_url = reverse_lazy('usuario:login')
+    model = User
+    template_name = 'paginas/detalhesusuario.html'   
 
 
 class CreateViewUsuario(CreateView):

@@ -25,19 +25,20 @@
         <td>{{ dev.email }}</td>
         <td>
           {% for l in dev.linguagem.all %}
-          <br>
           {{ l.nome }}
+          <br>
           {% endfor %}
         </td>
         <td>
-          {% for l in dev.framework.all %}
+          {% for f in dev.framework.all %}
+          {{ f.nome }}
           <br>
-          {{ l.nome }}
           {% endfor %}
         </td>
         <td>
           <a href="/dev/alterar/{{ dev.id }}" class="btn btn-warning btn-sm">Alterar</a>
-          <a href="/de/deletar/{{ dev.id }}" class="btn btn-danger btn-sm">Deletar</a>
+          <a href="/dev/deletar/{{ dev.id }}" class="btn btn-danger btn-sm">Deletar</a>
+          <a href="/dev/detalhes/{{ dev.id }}" class="btn btn-info btn-sm">Detalhe</a>
         </td>
       </tr>
       {% endif %}

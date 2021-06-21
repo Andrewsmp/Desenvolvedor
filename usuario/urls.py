@@ -1,6 +1,6 @@
 from django.urls import path
 from django.contrib.auth import views as auth_view
-from .views import CreateViewUsuario, ListViewUsuario, UpdateViewUsuario, DeleteViewUsuario
+from .views import CreateViewUsuario, ListViewUsuario, UpdateViewUsuario, DeleteViewUsuario, DetailViewUsuario
 
 app_name = 'usuario'
 
@@ -13,4 +13,5 @@ urlpatterns = [
     path('listar/', ListViewUsuario.as_view(), name='listar'),
     path('alterar/<int:pk>/', UpdateViewUsuario.as_view(), name='alterar'),
     path('deletar/<int:pk>/', DeleteViewUsuario.as_view(), name='deletar'),
+    path('detalhe/<int:pk>', DetailViewUsuario.as_view(), name='detalhe')
 ]

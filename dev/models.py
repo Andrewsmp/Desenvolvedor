@@ -1,6 +1,5 @@
 from django.db import models
 from habilidades.models import Base, FrameWork, Linguagem
-from django.forms import ModelForm
 
 
 class Desenvolvedor(Base):

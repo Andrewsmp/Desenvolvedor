@@ -1,0 +1,62 @@
+{% extends 'paginas/base.html' %}
+
+{% block titulo %}
+<title>Detalhes</title>
+{% endblock %}
+
+{% block conteudo %}
+<div class="container">
+    <h1>Detalhes</h1>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Login</th>
+                <th scope="col">E-mail</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Sobrenome</th>
+                <th scope="col">Data de criação</th>
+                <th scope="col">Administrador</th>
+                <th scope="col">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ object.username }}</td>
+
+                {% if object.email %}
+                <td>{{ object.email }}</td>
+                {% else %}
+                <td>Não informado</td>
+                {% endif %}
+
+                {% if object.first_name  %}
+                <td>{{ object.first_name  }}</td>
+                {% else %}
+                <td>Não informado</td>
+                {% endif %}
+
+                {% if object.last_name  %}
+                <td>{{ object.last_name  }}</td>
+                {% else %}
+                <td>Não informado</td>
+                {% endif %}
+
+                <td>{{ object.date_joined }}</td>
+
+                {% if object.is_superuser %}
+                <td>Sim</td>
+                {% else %}
+                <td>Não</td>
+                {% endif %}
+                <td>
+                    <a href="/alterar/{{ object.id }}" class="btn btn-warning btn-sm">Alterar</a>
+                    <a href="/deletar/{{ object.id }}" class="btn btn-danger btn-sm">Deletar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{% url 'usuario:listar' %}" class="btn btn-secondary">Voltar</a>
+</div>
+
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'paginas/base.html' %}
+
+{% block titulo %}
+<title>Detalhes</title>
+{% endblock %}
+
+{% block conteudo %}
+<div class="container">
+    <h1>Detalhes</h1>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Nome</th>
+                <th scope="col">Data de criação</th>
+                <th scope="col">Ativo</th>
+                <th scope="col">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ object.nome }}</td>                
+                <td>{{ object.data_criacao }}</td>
+
+                {% if object.ativo %}
+                <td>Sim</td>
+                {% else %}
+                <td>Não</td>
+                {% endif %}
+
+                {% if instancia %}
+                <td>
+                    <a href="/habilidade/alterar/linguagem/{{ object.id }}" class="btn btn-warning btn-sm">Alterar</a>
+                    <a href="/habilidade/deletar/linguagem/{{ object.id }}" class="btn btn-danger btn-sm">Deletar</a>
+                </td>
+                {% else %}
+                <td>
+                    <a href="/habilidade/alterar/framework/{{ object.id }}" class="btn btn-warning btn-sm">Alterar</a>
+                    <a href="/habilidade/deletar/framework/{{ object.id }}" class="btn btn-danger btn-sm">Deletar</a>
+                </td>
+                {% endif %}
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{% url 'habilidades:listar-habilidade' %}" class="btn btn-secondary">Voltar</a>
+</div>
+
+{% endblock %}

@@ -1,7 +1,8 @@
 from django.contrib import admin
+from django.contrib.auth import models
 
 from .models import Desenvolvedor
-from habilidades.models import Linguagem, FrameWork
+from habilidades.models import FrameWork, Linguagem
 
 
 @admin.register(Desenvolvedor)

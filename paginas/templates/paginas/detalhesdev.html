@@ -1,0 +1,55 @@
+{% extends 'paginas/base.html' %}
+
+{% block titulo %}
+<title>Detalhes</title>
+{% endblock %}
+
+{% block conteudo %}
+<div class="container">
+    <h1>Detalhes</h1>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Nome</th>
+                <th scope="col">E-mail</th>
+                <th scope="col">Linguagens</th>
+                <th scope="col">Frameworks</th>
+                <th scope="col">Data de criação</th>
+                <th scope="col">Ativo</th>
+                <th scope="col">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ object.nome }}</td>
+                <td>{{ object.email }}</td>
+                <td>
+                    {% for l in object.linguagem.all %}
+                    {{ l.nome }}
+                    <br>
+                    {% endfor %}
+                </td>
+                <td>
+                    {% for f in object.framework.all %}
+
+                    {{ f.nome }}
+                    {% endfor %}
+                </td>
+                <td>{{ object.data_criacao }}</td>
+                {% if object.ativo %}
+                <td>Sim</td>
+                {% else %}
+                <td>Não</td>
+                {% endif %}
+                <td>
+                    <a href="/dev/alterar/{{ object.id }}" class="btn btn-warning btn-sm">Alterar</a>
+                    <a href="/dev/deletar/{{ object.id }}" class="btn btn-danger btn-sm">Deletar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{% url 'dev:listar-dev' %}" class="btn btn-secondary">Voltar</a>
+</div>
+
+{% endblock %}

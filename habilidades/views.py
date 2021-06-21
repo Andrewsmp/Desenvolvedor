@@ -1,5 +1,6 @@
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.detail import DetailView 
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -17,6 +18,18 @@ class ListViewLing(LoginRequiredMixin, ListView):
         context['linguagens'] = Linguagem.objects.all()
         context['frameworks'] = FrameWork.objects.all()
         return context
+
+
+class DetailViewLing(LoginRequiredMixin, DetailView):
+    login_url = reverse_lazy('usuario:login')
+    model = Linguagem
+    template_name = 'paginas/detalheshab.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(DetailViewLing, self).get_context_data(**kwargs)
+        context['instancia'] = True
+        return context
+
 
 
 class CreateViewLing(LoginRequiredMixin, CreateView):
@@ -49,6 +62,18 @@ class CreateViewFrame(LoginRequiredMixin, CreateView):
     fields = ['nome']
     template_name = 'paginas/inserir.html'
     success_url = reverse_lazy('habilidades:listar-habilidade')
+
+
+class DetailViewFrame(LoginRequiredMixin, DetailView):
+    login_url = reverse_lazy('usuario:login')
+    model = FrameWork
+    template_name = 'paginas/detalheshab.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(DetailViewFrame, self).get_context_data(**kwargs)
+        context['instacia'] = False
+        return context
+
 
 
 class UpdateViewFrame(LoginRequiredMixin, UpdateView):
