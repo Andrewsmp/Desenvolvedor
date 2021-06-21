@@ -1,5 +1,9 @@
 {% extends 'paginas/base.html' %}
 
+{% block titulo %}
+    <title>Deletar</title>
+{% endblock %}
+
 {% block conteudo %}
 <div class="modal-fade" id="meuModal">
     <div class="modal-dialog">
@@ -18,8 +22,8 @@
                 <form method="POST">
                     {% csrf_token %}
                     {{ form.as_p }}
-                <input type="submit" value="Enviar" class="btn btn-outline-danger">
-                <a href="{% url 'dev:listar-dev' %}" class="btn btn-outline-dark">Fechar</a>
+                <input type="submit" value="Deletar" class="btn btn-danger">
+                <a href="{% url 'dev:listar-dev' %}" class="btn btn-secondary">Fechar</a>
             </div>
                 </form>
 

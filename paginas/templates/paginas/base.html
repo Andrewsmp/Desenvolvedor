@@ -1,31 +1,82 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     {% block titulo %}
     <title>Document</title>
     {% endblock %}
 </head>
-<body>
-    <div class="navbar nvbar-expand-sm">
-        <nav>
-            {% if request.user.is_authenticated %}
-            <a href="{% url 'habilidades:listar-habilidade' %}">Habilidades</a>
-            <span>{{ request.user }}</span>
-            <a href="{% url 'usuario:logout' %}">Sair</a>
-            {% else %}
-            <a href="{% url 'usuario:login' %}">Login</a>
-            {% endif %}
-        </nav>
-        {% if request.user.is_superuser %}
-        <a href="{% url 'usuario:cadastrar' %}">Cadastrar usuário</a>
-        {% endif %}
+
+<body style="min-width:372px;">
+    {% if request.user.is_authenticated %}
+    <nav class="navbar navbar-expand-lg navbar navbar-dark bg-primary border-bottom shadow-sm">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                        class="bi bi-bootstrap-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M6.375 7.125V4.658h1.78c.973 0 1.542.457 1.542 1.237 0 .802-.604 1.23-1.764 1.23H6.375zm0 3.762h1.898c1.184 0 1.81-.48 1.81-1.377 0-.885-.65-1.348-1.886-1.348H6.375v2.725z" />
+                        <path
+                            d="M4.002 0a4 4 0 0 0-4 4v8a4 4 0 0 0 4 4h8a4 4 0 0 0 4-4V4a4 4 0 0 0-4-4h-8zm1.06 12V3.545h3.399c1.587 0 2.543.809 2.543 2.11 0 .884-.65 1.675-1.483 1.816v.1c1.143.117 1.904.931 1.904 2.033 0 1.488-1.084 2.396-2.888 2.396H5.062z" />
+                    </svg>
+                </a>
+                <a class="nav-link active" href="{% url 'dev:listar-dev' %}">Desenvolvedores</a>
+                <a class="navbar-brand" href="{% url 'habilidades:listar-habilidade' %}">Habilidades</a>
+                {% if request.user.is_superuser %}
+                <a class="navbar-brand" href="{% url 'usuario:listar' %}">Usuários</a>
+                {% endif %}
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse  id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Cadastrar
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="{% url 'dev:inserir-dev' %}">Desenvolvedor</a></li>
+                                <li><a class="dropdown-item"
+                                        href="{% url 'habilidades:inserir-linguagem' %}">Linguagem</a></li>
+                                <li><a class="dropdown-item"
+                                        href="{% url 'habilidades:inserir-framework' %}">Framework</a></li>
+                                {% if request.user.is_superuser %}
+                                <li><a class="dropdown-item" href="{% url 'usuario:cadastrar' %}">Usuário</a></li>
+                                {% endif %}
+                            </ul>
+                        </li>
+                    </ul>
+                    <a type="button" href="{% url 'usuario:logout' %}" class="btn btn-outline-light">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-box-arrow-in-left" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0v-2z">
+                            </path>
+                            <path fill-rule="evenodd"
+                                d="M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z">
+                            </path>
+                        </svg>
+                        Sair
+                    </a>
+                </div>
+            </div>
+    </nav>
+    {% endif %}
+
+    <div class="container">
+        {% block conteudo %}
+        {% endblock %}
     </div>
-    {% block conteudo %}
-    {% endblock %}
-  
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
 </body>
+
 </html>

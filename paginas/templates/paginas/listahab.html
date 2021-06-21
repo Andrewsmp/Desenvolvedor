@@ -1,19 +1,68 @@
 {% extends 'paginas/base.html' %}
-{% block conteudo %}
-    <label><strong>Linguagens: </strong></label>
-    {% for l in linguagens %}
-        {% if l.ativo %}
-        <br>
-            {{ l.nome }}
-        {% endif %}
-    {% endfor %}
-    <br>
-    <br>
-    <label><strong>Frameworks: </strong></label>
-    {% for f in frameworks %}
-        {% if f.ativo %}
-        <br>
-            {{ f.nome }}
-        {% endif %}
-    {% endfor %}
+
+{% block titulo %}
+    <title>Lista</title>
 {% endblock %}
+
+{% block conteudo %}
+
+<div class="container">
+    <div class="row">
+      <div class="col">
+        
+        <div class="bd-example">
+            <table class="table table-hover">
+                <thead>
+              <tr>
+                <th scope="col">Linguagens</th>
+                <th scope="col">Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for l in linguagens %}
+                {% if l.ativo %}
+              <tr>
+                <td>{{ l.nome }}</td>
+                <td>
+                    <a href="/habilidade/alterar/linguagem/{{ l.id }}" class="btn btn-warning btn-sm">Alterar</a>
+                    <a href="/habilidade/deletar/linguagem/{{ l.id }}" class="btn btn-danger btn-sm">Deletar</a>
+                </td>
+              </tr>
+                {% endif %}
+            {% endfor %}
+            </tbody>
+            </table>
+          </div>
+
+      </div>
+      <div class="col">
+        
+        <div class="bd-example">
+            <table class="table table-hover">
+                <thead>
+              <tr>
+                <th scope="col">Framework</th>
+                <th scope="col">Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+            {% for f in frameworks %}
+                {% if f.ativo %}
+                <td>{{ f.nome }}</td>
+                <td>
+                    <a href="/habilidade/alterar/framework/{{ f.id }}" class="btn btn-warning btn-sm">Alterar</a>
+                    <a href="/habilidade/deletar/framework/{{ f.id }}" class="btn btn-danger btn-sm">Deletar</a>
+                </td>
+              </tr>
+                {% endif %}
+            {% endfor %}
+            </tbody>
+            </table>
+          </div>
+
+      </div>
+      
+    </div>
+  </div>
+  {% endblock %}

@@ -1,22 +1,48 @@
 {% extends 'paginas/base.html' %}
+
+{% block titulo %}
+<title>Lista</title>
+{% endblock %}
+
 {% block conteudo %}
-    {% for dev in object_list %}
-    <br>
-    <br>
-        {% if dev.ativo %}
-            <label><strong>Nome: </strong></label>{{ dev.nome }}
-            <br>
-            <label><strong>E-mail: </strong></label>{{ dev.email }}
-            <br>
-            <label><strong>Linguagens: </strong></label>
-            {% for l in dev.linguagem.all %}
-                {{ l.nome }}
-            {% endfor %}
-            <br>
-            <label><strong>Framework: </strong></label>
-            {% for l in dev.framework.all %}
-                {{ l.nome }}
-            {% endfor %}
-        {% endif %}
-    {% endfor %}
+
+<div class="bd-example">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Nome</th>
+        <th scope="col">E-mail</th>
+        <th scope="col">Linguagens</th>
+        <th scope="col">Frameworks</th>
+        <th scope="col">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for dev in object_list %}
+      {% if dev.ativo %}
+      <tr>
+        <td>{{ dev.nome }}</td>
+        <td>{{ dev.email }}</td>
+        <td>
+          {% for l in dev.linguagem.all %}
+          <br>
+          {{ l.nome }}
+          {% endfor %}
+        </td>
+        <td>
+          {% for l in dev.framework.all %}
+          <br>
+          {{ l.nome }}
+          {% endfor %}
+        </td>
+        <td>
+          <a href="/dev/alterar/{{ dev.id }}" class="btn btn-warning btn-sm">Alterar</a>
+          <a href="/de/deletar/{{ dev.id }}" class="btn btn-danger btn-sm">Deletar</a>
+        </td>
+      </tr>
+      {% endif %}
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
 {% endblock %}

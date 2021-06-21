@@ -1,4 +1,3 @@
-from habilidades.views import CreateViewFrame
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
@@ -17,7 +16,7 @@ class CreateViewUsuario(LoginRequiredMixin, CreateView):
     queryset = User.objects.all()
     fields = ['username', 'email', 'password', 'first_name', 'last_name']
     template_name = 'paginas/inserir.html'
-    success_url = reverse_lazy('listar-dev')
+    success_url = reverse_lazy('usuario:listar')
 
 
 class UpdateViewUsuario(LoginRequiredMixin, UpdateView):
