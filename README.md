@@ -3,7 +3,7 @@
 <h2>Descrição</h2>
 <p>Projeto para conclusão do módulo 2 do curso Academia Python pela Fuctura ministrado pelo professor Angelo Cavalcante, módulo focado no desenvolvimento web com Django. O projeto consiste no cadastro de desenvolvedores e suas abilidades(linguagens e frameworks), onde o modelo desenvolvedor possue uma relação de NxN com suas habilidades.</p>
 
-<p>Obs: Para melhor funcionamento do sistema cadastre um usuário na tela administrativa do Django na rota: http://localhost/admin.</p>
+<p>Obs: Para melhor funcionamento do sistema cadastre um usuário na tela administrativa do Django na rota: http://localhost/admin/. E a rota principal do sistema é http://localhost/login/</p>
 
 <h2>Ferramentas</h2>
 
